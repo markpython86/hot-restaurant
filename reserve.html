@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" src="./style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+        <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+    <title>Reserve</title>
+</head>
+
+<body>
+    <div class='container-fluid'>
+        <div class="jumbotron">
+            <h1 class="display-4 text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+            <hr class="my-4">
+            <h2 class="text-center">Make your reservation</h2>
+            <br>
+            <div class="text-center">
+                <a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span>
+                        View Tables</button></a>
+                <a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Table Reservation</h3>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="input-group">
+                        <h4>Name</h4>
+                        <input id="name" type="text" class="form-control" placeholder="Username">
+                    </div>
+                    <div class="input-group">
+                        <h4>Phone Number</h4>
+                        <input id="phoneNumber" type="text" class="form-control" placeholder="Your Phone Number">
+                    </div>
+                    <div class="input-group">
+                        <h4>Email</h4>
+                        <input id="email" type="text" class="form-control" placeholder="Your Email">
+                    </div>
+                    <div class="input-group">
+                        <h4>Unique ID</h4>
+                        <input id="uniqueID" type="text" class="form-control" placeholder="Your ID">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <a href="#"><button type="button" id="submit-btn" class="btn btn-lg btn-primary">Submit</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script type="text/JavaScript">
+        $("#submit-btn").on("click", function (event) {
+            event.preventDefault();
+            var newReservation = {
+                name: $("#name").val().trim(),
+                phoneNumber: $("#phoneNumber").val().trim(),
+                email: $("#email").val().trim(),
+                uniqueID: $("#uniqueID").val().trim()
+            };
+            $.post("/api/tables", newReservation)
+                .then(function(data) {
+                    console.log("add.html", data);
+                    alert("Adding reservation...");
+                });
+
+        });
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
